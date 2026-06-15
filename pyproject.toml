@@ -1,0 +1,5 @@
+[tool.uv.workspace]
+members = [
+    "api_cli",
+    "command_editor",
+]
