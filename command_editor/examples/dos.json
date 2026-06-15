@@ -1,0 +1,9 @@
+{
+    "command": "dos",
+    "args": {
+        "address": "127.0.0.1",
+        "port": 80,
+        "interval": 100,
+        "duration": 30
+    }
+}
