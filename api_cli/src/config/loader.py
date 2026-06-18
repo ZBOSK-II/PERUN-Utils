@@ -12,13 +12,13 @@ def load_config(config: Path, profile: str) -> AppConfig:
     try:
         if config.exists():
             parser.read(config)
-    except Exception:
-        raise AppError("Given profile not found in config file")
+    except Exception as e:
+        raise AppError("Given profile not found in config file") from e
 
     try:
         section = parser[profile]
-    except Exception:
-        raise AppError("Given profile not found in config file")
+    except Exception as e:
+        raise AppError("Given profile not found in config file") from e
 
     plugins = [
         h.strip() for h in section.get("default_plugins", fallback="").split(",")
