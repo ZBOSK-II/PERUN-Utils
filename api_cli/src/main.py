@@ -59,7 +59,8 @@ def main() -> int:
         return 1
     except Exception as e:
         console.error(str(e))
+        return 1
 
 
 if __name__ == "__main__":
-    main()
+    exit(main())
