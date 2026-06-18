@@ -1,6 +1,7 @@
 from pathlib import Path
-import requests
-from api.exceptions import NetworkError
+from requests.exceptions import HTTPError, RequestException, Timeout
+
+from api.exceptions import ApiError, NetworkError
 from commands.base import BaseCommand
 
 
@@ -48,15 +49,20 @@ class DownloadCommand(BaseCommand):
 
             self.console.info(f"Saved to: {output_path.resolve()}")
 
-        except requests.exceptions.HTTPError as e:
-            if output_path.exists() and resp.status_code < 500:
+        except HTTPError as e:
+            error_detail = resp.text if resp and resp.text else str(e)
+            if output_path.exists() and resp and resp.status_code < 500:
                 output_path.unlink()
-            self.console.error(f"Download failed (HTTP {resp.status_code}): {e}")
-            raise SystemExit(1)
-        except requests.exceptions.Timeout as e:
-            self.console.error(f"Download timed out: {e}")
-            self.console.error("Partial file saved. Run the command again to resume.")
-            raise SystemExit(1)
-        except NetworkError as e:
-            self.console.error(f"Network error: {e}")
-            raise SystemExit(1)
+            raise ApiError(
+                resp.status_code if resp else -1,
+                f"File download failed {error_detail}",
+            ) from e
+
+        except Timeout as e:
+            raise ApiError(
+                resp.status_code if resp else -1,
+                f"Download timed out: {e}\nPartial file saved. Run the command again to resume.",
+            ) from e
+
+        except RequestException as e:
+            raise NetworkError(f"Request failed: {e}") from e
