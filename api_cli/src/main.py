@@ -22,7 +22,6 @@ def main() -> int:
 
     config = load_config(settings.config_file, profile)
 
-    # plugins = args.plugins or config.default_plugins
     timeout = args.timeout or config.timeout
 
     api_url = args.api_url or settings.api_url
@@ -34,6 +33,8 @@ def main() -> int:
         parser.error(
             "Authentication token is required. Provide it via `--api-url` or `.env` file"
         )
+    if args.plugins is None:
+        args.plugins = config.default_plugins
 
     api_args = ApiArgs(timeout, api_url, token)
 
@@ -56,6 +57,8 @@ def main() -> int:
     except AppError as e:
         console.error(str(e))
         return 1
+    except Exception as e:
+        console.error(str(e))
 
 
 if __name__ == "__main__":

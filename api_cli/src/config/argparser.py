@@ -15,6 +15,8 @@ Examples:
         """,
     )
 
+    parser.set_defaults(plugins=None)
+
     parser.add_argument("--api-url", help="API URL")
     parser.add_argument("--token", help="Authentication token")
     parser.add_argument("--timeout", type=float, help="Timeout")
