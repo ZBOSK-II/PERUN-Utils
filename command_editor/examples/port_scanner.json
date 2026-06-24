@@ -2,7 +2,7 @@
     "command": "port_scanner",
     "args": {
         "address": "127.0.0.1",
-        "being": 1,
+        "begin": 1,
         "end": 80,
         "delay": 200
     }
