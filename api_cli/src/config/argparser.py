@@ -56,4 +56,8 @@ Examples:
         "--output", help="Local output path (defaults to --filename)"
     )
 
+    ### ANALYSIS
+    p_analysis = subparsers.add_parser(name="analysis", help="Analysis result")
+    p_analysis.add_argument("task_uid", help="Task UID")
+
     return parser

@@ -11,6 +11,7 @@ from commands.list import ListCommand
 from commands.status import StatusCommand
 from commands.files import FilesCommand
 from commands.download import DownloadCommand
+from commands.analysis import AnalysisCommand
 
 
 def main() -> int:
@@ -47,6 +48,7 @@ def main() -> int:
         "status": StatusCommand,
         "files": FilesCommand,
         "download": DownloadCommand,
+        "analysis": AnalysisCommand,
     }
 
     try:
