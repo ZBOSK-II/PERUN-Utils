@@ -1,7 +1,7 @@
 [project]
 name = "command-editor"
 version = "0.1.0"
-description = "Add your description here"
+description = "Synthetic malware's command editor"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
