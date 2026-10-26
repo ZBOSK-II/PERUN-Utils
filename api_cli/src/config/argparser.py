@@ -15,7 +15,7 @@ Examples:
         """,
     )
 
-    parser.set_defaults(plugins=None)
+    parser.set_defaults(plugins=None, template_name=None)
 
     parser.add_argument("--api-url", help="API URL")
     parser.add_argument("--token", help="Authentication token")
