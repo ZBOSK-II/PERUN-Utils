@@ -32,6 +32,11 @@ Examples:
     p_upload.add_argument("file", help="Path to file to upload")
     p_upload.add_argument("duration", type=float, help="Task duration in seconds")
     p_upload.add_argument(
+        "--template",
+        dest="template_name",
+        help="Name of template (Defaults to profile default template)",
+    )
+    p_upload.add_argument(
         "--plugins",
         nargs="*",
         help="List of plugin names (Defaults to profile default plugins)",
