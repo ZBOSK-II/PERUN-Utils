@@ -36,10 +36,20 @@ class ApiClient:
         except RequestException as e:
             raise NetworkError(f"Request failed: {e}") from e
 
-    def upload_file(self, file_path: Path, duration: float, plugins: list[str]) -> dict:
+    def upload_file(
+        self,
+        file_path: Path,
+        duration: float,
+        plugins: list[str],
+        template_name: str | None = None,
+    ) -> dict:
         with open(file_path, "rb") as f:
             files = {"file": (file_path.name, f, "application/octet-stream")}
-            data = {"duration": duration, "plugins": plugins}
+            data = {
+                "duration": duration,
+                "plugins": plugins,
+                "template_name": template_name,
+            }
             return self._request(HTTPMethod.POST, "/upload", files=files, data=data)
 
     def list_tasks(self) -> list[str] | None:

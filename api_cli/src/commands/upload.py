@@ -12,7 +12,9 @@ class UploadCommand(BaseCommand):
 
         self.console.info(f"Uploading '{file_path.name}'...")
 
-        result = self.api.upload_file(file_path, args.duration, args.plugins)
+        result = self.api.upload_file(
+            file_path, args.duration, args.plugins, args.template_name
+        )
 
         self.console.info("Uploaded file successfuly")
         self.console.json(result)

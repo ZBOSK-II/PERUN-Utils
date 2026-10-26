@@ -23,7 +23,7 @@ def main() -> int:
 
     config = load_config(settings.config_file, profile)
 
-    timeout = args.timeout or config.timeout
+    timeout = args.timeout or config.default_timeout
 
     api_url = args.api_url or settings.api_url
     token = args.token or settings.token
@@ -36,6 +36,9 @@ def main() -> int:
         )
     if args.plugins is None:
         args.plugins = config.default_plugins
+
+    if args.template_name is None:
+        args.template_name = config.default_template_name
 
     api_args = ApiArgs(timeout, api_url, token)
 
