@@ -71,16 +71,18 @@ Example `.config`:
 
 ```ini
 [default]
-default_plugins = apimon,filetracer,memdump,procmon,socketmon,tlsmon
+plugins = apimon,filetracer,memdump,procmon,socketmon,tlsmon
 timeout = 30
+template =
 ```
 
 #### Configuration Options
 
-| Option            | Description                                                                  |
-| ----------------- | ---------------------------------------------------------------------------- |
-| `default_plugins` | Comma-separated list of PERUN Sandbox plugins used by default during uploads |
-| `timeout`         | API request timeout in seconds                                               |
+| Option            | Description                                                                   |
+| ----------------- | ----------------------------------------------------------------------------- |
+| `plugins`         | Comma-separated list of PERUN Sandbox plugins used by default during uploads  |
+| `timeout`         | API request timeout in seconds                                                |
+| `template`        | Sandbox template name, empty template defaults to server's default            |
 
 ## Installation
 
