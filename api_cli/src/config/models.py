@@ -8,6 +8,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class AppConfig:
     default_plugins: list[str]
     timeout: float = 30.0
+    default_template_name: str | None = None
 
 
 class AppSettings(BaseSettings):
