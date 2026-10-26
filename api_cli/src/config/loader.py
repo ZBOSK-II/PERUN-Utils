@@ -25,7 +25,9 @@ def load_config(config: Path, profile: str) -> AppConfig:
     ]
     timeout = section.getfloat("timeout", fallback=30.0)
 
-    return AppConfig(plugins, timeout)
+    template_name = section.get("template_name")
+
+    return AppConfig(plugins, timeout, template_name)
 
 
 def load_settings() -> AppSettings:
