@@ -20,14 +20,14 @@ def load_config(config: Path, profile: str) -> AppConfig:
     except Exception as e:
         raise AppError("Given profile not found in config file") from e
 
-    plugins = [
-        h.strip() for h in section.get("default_plugins", fallback="").split(",")
+    default_plugins = [
+        h.strip() for h in section.get("plugins", fallback="").split(",")
     ]
     timeout = section.getfloat("timeout", fallback=30.0)
 
-    template_name = section.get("template")
+    default_template_name = section.get("template")
 
-    return AppConfig(plugins, timeout, template_name)
+    return AppConfig(default_plugins, timeout, default_template_name)
 
 
 def load_settings() -> AppSettings:

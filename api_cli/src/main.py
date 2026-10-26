@@ -23,7 +23,7 @@ def main() -> int:
 
     config = load_config(settings.config_file, profile)
 
-    timeout = args.timeout or config.timeout
+    timeout = args.timeout or config.default_timeout
 
     api_url = args.api_url or settings.api_url
     token = args.token or settings.token
