@@ -1,6 +1,7 @@
-from commands.base import BaseCommand
 from pathlib import Path
+
 from api.exceptions import AppError
+from commands.base import BaseCommand
 
 
 class UploadCommand(BaseCommand):

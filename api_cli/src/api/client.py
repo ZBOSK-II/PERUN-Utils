@@ -1,11 +1,12 @@
 import json
 from pathlib import Path
 from typing import Any
+
 import requests
-from requests.exceptions import HTTPError, RequestException
 from api.exceptions import ApiError, NetworkError
 from api.http_metod import HTTPMethod
 from config.models import ApiArgs
+from requests.exceptions import HTTPError, RequestException
 
 
 class ApiClient:

@@ -1,8 +1,8 @@
 from pathlib import Path
-from requests.exceptions import HTTPError, RequestException, Timeout
 
 from api.exceptions import ApiError, NetworkError
 from commands.base import BaseCommand
+from requests.exceptions import HTTPError, RequestException, Timeout
 
 
 class DownloadCommand(BaseCommand):

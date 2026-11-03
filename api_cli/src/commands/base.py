@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from argparse import Namespace
+
 from api.client import ApiClient
 from tui import Console
 
