@@ -1,7 +1,6 @@
-from config.loader import load_config, load_settings
 from config.argparser import build_parser
+from config.loader import load_config, load_settings
 from config.models import AppArgs
-
 from editor.command_editor import command_editor
 from editor.find_marker import find_marker
 

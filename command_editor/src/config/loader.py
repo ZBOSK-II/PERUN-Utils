@@ -1,8 +1,7 @@
 import configparser
 from pathlib import Path
 
-from config.models import AppConfig
-from config.models import AppSettings
+from config.models import AppConfig, AppSettings
 
 
 def load_config(config: Path, profile: str) -> AppConfig:
