@@ -65,4 +65,6 @@ Examples:
     p_analysis = subparsers.add_parser(name="analysis", help="Analysis result")
     p_analysis.add_argument("task_uid", help="Task UID")
 
+    ### TEMPLATES
+    subparsers.add_parser(name="templates", help="List available templates")
     return parser

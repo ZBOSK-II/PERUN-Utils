@@ -1,17 +1,16 @@
-from config.loader import load_config, load_settings
-from config.argparser import build_parser
-from config.models import ApiArgs
-
 from api.client import ApiClient
 from api.exceptions import AppError
-from tui import Console
-
-from commands.upload import UploadCommand
+from commands.analysis import AnalysisCommand
+from commands.download import DownloadCommand
+from commands.files import FilesCommand
 from commands.list import ListCommand
 from commands.status import StatusCommand
-from commands.files import FilesCommand
-from commands.download import DownloadCommand
-from commands.analysis import AnalysisCommand
+from commands.templates import TemplatesCommand
+from commands.upload import UploadCommand
+from config.argparser import build_parser
+from config.loader import load_config, load_settings
+from config.models import ApiArgs
+from tui import Console
 
 
 def main() -> int:
@@ -52,6 +51,7 @@ def main() -> int:
         "files": FilesCommand,
         "download": DownloadCommand,
         "analysis": AnalysisCommand,
+        "templates": TemplatesCommand,
     }
 
     try:

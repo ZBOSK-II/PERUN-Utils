@@ -3,3 +3,8 @@ members = [
     "api_cli",
     "command_editor",
 ]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.17.0",
+]

@@ -64,6 +64,9 @@ class ApiClient:
     def get_analysis(self, task_uid: str) -> dict:
         return self._request(HTTPMethod.GET, f"/analysis/{task_uid}")
 
+    def get_available_templates(self) -> list[str]:
+        return self._request(HTTPMethod.GET, "/templates")
+
     def get_download_stream(
         self, task_uid: str, filename: str, start_byte: int = 0
     ) -> requests.Response:
