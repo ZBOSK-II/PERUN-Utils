@@ -27,7 +27,7 @@ Supported artifacts may include:
 
 The `download` command supports download resumption.
 
-If a download is interrupted, rerunning the same command will continue downloading the remaining data instead of restarting the transfer from the beginning, provided that the partial output file is still present.
+If a download is interrupted, rerunning the same command will continue downloading the remaining data instead of restarting the transfer from the beginning, provided that the partial output and download meta files are still present.
 
 ## Configuration
 
