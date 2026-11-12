@@ -58,7 +58,18 @@ Examples:
     p_download.add_argument("task_uid", help="Task UID")
     p_download.add_argument("filename", help="Exact filename to download")
     p_download.add_argument(
-        "--output", help="Local output path (defaults to --filename)"
+        "--output", help="Local output path (defaults to <filename>-<task_uid>.<ext>)"
+    )
+    group = p_download.add_mutually_exclusive_group()
+    group.add_argument(
+        "--reset",
+        action="store_true",
+        help="Discard in-progress partial download and restart from zero",
+    )
+    group.add_argument(
+        "--force",
+        action="store_true",
+        help="Delete existing output (complete or partial) and start from zero",
     )
 
     ### ANALYSIS
