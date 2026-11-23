@@ -1,10 +1,12 @@
 import json
+import mimetypes
 from pathlib import Path
 from typing import Any
 
 import requests
 from api.exceptions import ApiError, NetworkError
 from api.http_metod import HTTPMethod
+from commands.utils.archive_options import ArchiveOptions
 from config.models import ApiArgs
 from requests.exceptions import HTTPError, RequestException
 
@@ -42,15 +44,23 @@ class ApiClient:
         file_path: Path,
         duration: float,
         plugins: list[str],
+        archive_options: ArchiveOptions,
         template_name: str | None = None,
     ) -> dict:
+        content_type = (
+            mimetypes.guess_type(file_path.name)[0] or "application/octet-stream"
+        )
+
         with open(file_path, "rb") as f:
-            files = {"file": (file_path.name, f, "application/octet-stream")}
+            files = {"file": (file_path.name, f, content_type)}
             data = {
                 "duration": duration,
                 "plugins": plugins,
                 "template_name": template_name,
             }
+
+            data.update(archive_options.to_form_data())
+
             return self._request(HTTPMethod.POST, "/upload", files=files, data=data)
 
     def list_tasks(self) -> list[str] | None:
