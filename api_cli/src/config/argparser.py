@@ -41,6 +41,22 @@ Examples:
         nargs="*",
         help="List of plugin names (Defaults to profile default plugins)",
     )
+    p_upload.add_argument(
+        "--archive",
+        action="store_true",
+        dest="extract_archive",
+        help="Treat file as archive",
+    )
+    p_upload.add_argument(
+        "--archive-entry-path",
+        dest="archive_entry_path",
+        help="Archive entry path (Treats file as archive)",
+    )
+    p_upload.add_argument(
+        "--archive-password",
+        dest="archive_password",
+        help="Archive password (Treats file as archive)",
+    )
 
     ### LIST
     subparsers.add_parser("list", help="List all task UIDs")
