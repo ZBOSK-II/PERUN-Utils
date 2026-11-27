@@ -18,7 +18,11 @@ API CLI supports the following operations:
 - Resuming interrupted artifact downloads
 - Retrieving DataMiner analysis results
 
-Supported artifacts may include:
+Client supports uploading samples such as: 
+- Executable files
+- Archives with optional password.
+
+Supported download artifacts may include:
 
 - Network capture files (`.pcap`)
 - Memory dumps
@@ -171,7 +175,12 @@ Command-line arguments take precedence over values provided through `.env` files
 Upload a sample using selected plugins:
 
 ```bash
-main.py upload malware.exe 60 --plugins procmon tlsmon
+main.py upload malware.exe 60 --plugins procmon,tlsmon
+```
+Upload an archive sample with password:
+
+```bash
+main.py upload malware.zip 60 archive malware.exe --password malware
 ```
 
 List available tasks:
@@ -216,7 +225,10 @@ api_cli/
     │   ├── files.py
     │   ├── list.py
     │   ├── status.py
-    │   └── upload.py
+    │   ├── upload.py
+    │   └── utils
+    │       ├── archive_options.py
+    │       └── download_storage.py
     ├── config
     │   ├── argparser.py
     │   ├── loader.py

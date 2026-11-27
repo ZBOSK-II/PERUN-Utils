@@ -1,13 +1,18 @@
 import argparse
 
 
+def _plugins(value: str) -> list[str]:
+    return [part for part in value.split(",") if part]
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description="CLI client for Sandbox API",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  %(prog)s upload malware.exe 60 --plugins procmon tlsmon
+  %(prog)s upload malware.exe 60 --plugins tlsmon,procmon
+  %(prog)s upload malware.exe 60 archive "malware.exe" --password secret
   %(prog)s list
   %(prog)s status task-uid
   %(prog)s files task-uid
@@ -38,8 +43,20 @@ Examples:
     )
     p_upload.add_argument(
         "--plugins",
-        nargs="*",
-        help="List of plugin names (Defaults to profile default plugins)",
+        type=_plugins,
+        help='Comma-separated plugin names, e.g. "tlsmon,procmon" (Defaults to profile default plugins)',
+    )
+
+    p_upload.set_defaults(archive_cmd=None)
+    upload_subparsers = p_upload.add_subparsers(dest="archive_cmd", metavar="archive")
+    p_archive = upload_subparsers.add_parser("archive", help="Treat file as archive")
+    p_archive.add_argument(
+        "archive_entry_path",
+        metavar="entry_path",
+        help="File inside the archive to execute",
+    )
+    p_archive.add_argument(
+        "--password", dest="archive_password", help="Archive password"
     )
 
     ### LIST
