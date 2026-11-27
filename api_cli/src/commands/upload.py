@@ -9,8 +9,13 @@ class UploadCommand(BaseCommand):
     def execute(self, args):
         file_path = Path(args.file)
 
-        archive_options = ArchiveOptions(
-            args.extract_archive, args.archive_password, args.archive_entry_path
+        archive_options = (
+            ArchiveOptions(
+                args.archive_entry_path,
+                args.archive_password,
+            )
+            if args.archive_cmd == "archive"
+            else None
         )
 
         if not file_path.exists():
@@ -22,8 +27,8 @@ class UploadCommand(BaseCommand):
             file_path,
             args.duration,
             args.plugins,
-            archive_options,
             args.template_name,
+            archive_options,
         )
 
         self.console.info("Uploaded file successfuly")

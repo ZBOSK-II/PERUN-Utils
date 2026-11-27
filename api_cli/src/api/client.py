@@ -44,8 +44,8 @@ class ApiClient:
         file_path: Path,
         duration: float,
         plugins: list[str],
-        archive_options: ArchiveOptions,
         template_name: str | None = None,
+        archive_options: ArchiveOptions | None = None,
     ) -> dict:
         content_type = (
             mimetypes.guess_type(file_path.name)[0] or "application/octet-stream"
@@ -59,7 +59,8 @@ class ApiClient:
                 "template_name": template_name,
             }
 
-            data.update(archive_options.to_form_data())
+            if archive_options is not None:
+                data.update(archive_options.to_form_data())
 
             return self._request(HTTPMethod.POST, "/upload", files=files, data=data)
 
