@@ -225,7 +225,10 @@ api_cli/
     │   ├── files.py
     │   ├── list.py
     │   ├── status.py
-    │   └── upload.py
+    │   ├── upload.py
+    │   └── utils
+    │       ├── archive_options.py
+    │       └── download_storage.py
     ├── config
     │   ├── argparser.py
     │   ├── loader.py
